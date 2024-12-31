@@ -80,7 +80,6 @@ class APIClient(BaseAPIClient):
                 timeout=self.timeout,
                 **kwargs,
             )
-            response.raise_for_status()
             return response
 
     def get(
@@ -335,7 +334,6 @@ class AsyncAPIClient(BaseAPIClient):
                 timeout=self.timeout,
                 **kwargs,
             )
-            response.raise_for_status()
             return response
 
     async def get(
