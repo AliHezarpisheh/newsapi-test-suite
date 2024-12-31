@@ -76,7 +76,7 @@ addopts = [
 ]
 markers = [
     "smoke: Tests focusing on essential and critical functionality",
-    "exception: Tests checking how the application handles exceptions and error scenarios",
+    "error: Tests checking how the application handles error scenarios",
     "asyncio: Asynchronous tests using the pytest-asyncio plugin",
 ]
 required_plugins = [
@@ -87,3 +87,4 @@ testpaths = "tests"
 xfail_strict = true
 
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope="function"
