@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "newsapi-test-suite"
 version = "1.0.0"
-description = ""
+description = "Test suite for NewsAPI, including manual test design and automated tests and BDD scenarios using pytest and pytest-bdd."
 authors = ["ali <alihezarpisheh@outlook.com>"]
 readme = "README.md"
 package-mode = false
