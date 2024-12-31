@@ -15,6 +15,9 @@ class Settings(BaseSettings):
         str, Field(description="The base url for the API getting tested")
     ]
     API_KEY: Annotated[str, Field(description="The API key, used for auth")]
+    RATE_LIMITED_API_KEY: Annotated[
+        str, Field(description="The API key which is rate limited")
+    ]
 
     # Settings Configuration
     model_config = SettingsConfigDict(
