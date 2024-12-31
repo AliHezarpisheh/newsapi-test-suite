@@ -1,7 +1,6 @@
 """Client for making HTTP requests using the httpx library."""
 
 from typing import Any
-from urllib.parse import urljoin
 
 import httpx
 
@@ -68,7 +67,7 @@ class APIClient(BaseAPIClient):
         httpx.Response
             The HTTP response object.
         """
-        full_url = urljoin(self.base_url, endpoint)
+        full_url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
         request_headers = {**self.default_headers, **(headers or {})}
 
         with self._client() as client:
@@ -323,7 +322,7 @@ class AsyncAPIClient(BaseAPIClient):
         httpx.Response
             The HTTP response object.
         """
-        full_url = urljoin(self.base_url, endpoint)
+        full_url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
         request_headers = {**self.default_headers, **(headers or {})}
 
         async with self._client() as client:

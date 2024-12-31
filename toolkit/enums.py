@@ -18,3 +18,11 @@ class ResponseCodeEnum(str, Enum):
     PARAMETER_INVALID = "parameterInvalid"
     PARAMETER_MISSING = "parametersMissing"
     SOURCES_DOES_NOT_EXIST = "sourceDoesNotExist"
+
+
+class APIEndpointEnum(str, Enum):
+    """Enumeration of the API endpoints."""
+
+    EVERYTHING = "/everything"
+    TOP_HEADLINES = "/top_headlines"
+    SOURCES = "/sources"
