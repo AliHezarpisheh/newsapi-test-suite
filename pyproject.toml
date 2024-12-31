@@ -15,6 +15,8 @@ pytest-randomly = "^3.16.0"
 pytest-html = "^4.1.1"
 httpx = "^0.28.1"
 tox = "^4.23.2"
+pydantic = "^2.10.4"
+pydantic-settings = "^2.7.0"
 
 
 [tool.poetry.group.dev.dependencies]
