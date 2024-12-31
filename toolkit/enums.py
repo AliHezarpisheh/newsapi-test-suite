@@ -18,6 +18,7 @@ class ResponseCodeEnum(str, Enum):
     PARAMETER_INVALID = "parameterInvalid"
     PARAMETER_MISSING = "parametersMissing"
     SOURCES_DOES_NOT_EXIST = "sourceDoesNotExist"
+    RATE_LIMITED = "rateLimited"
 
 
 class APIEndpointEnum(str, Enum):
