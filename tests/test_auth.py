@@ -18,6 +18,7 @@ from toolkit import (
 async def test_valid_api_key_in_x_api_key_header_success(
     api_client: AsyncAPIClient,
 ) -> None:
+    """Test successful response with valid API key in X-API-KEY header."""
     response = await api_client.get(
         APIEndpointEnum.EVERYTHING.value, params={"q": "bitcoin"}
     )
@@ -43,6 +44,7 @@ async def test_valid_api_key_in_x_api_key_header_success(
     ],
 )
 async def test_valid_api_key_in_authorization_header_success(token_type: str) -> None:
+    """Test successful response with valid API key in Authorization header."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL,
         default_headers={"Authorization": token_type + settings.API_KEY},
@@ -67,6 +69,7 @@ async def test_valid_api_key_in_authorization_header_success(token_type: str) ->
 
 @pytest.mark.asyncio
 async def test_valid_api_key_in_query_param_success() -> None:
+    """Test successful response with valid API key in query parameter."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
 
     response = await api_client.get(
@@ -95,6 +98,7 @@ async def test_valid_api_key_in_query_param_success() -> None:
     ],
 )
 async def test_valid_api_keys_in_param_and_header_success(header_name: str) -> None:
+    """Test successful response with valid API key in both query param and header."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL, default_headers={header_name: settings.API_KEY}
     )
@@ -127,6 +131,7 @@ async def test_valid_api_keys_in_param_and_header_success(header_name: str) -> N
 async def test_valid_api_key_in_query_param_despite_invalid_key_in_header_success(
     header_name: str,
 ) -> None:
+    """Test success response with valid key in query param despite invalid header."""
     invalid_api_key = "invalid_api_key"
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL, default_headers={header_name: invalid_api_key}
@@ -158,11 +163,12 @@ async def test_valid_api_key_in_query_param_despite_invalid_key_in_header_succes
         "",
         None,
         "a" * 1000,
-    ]
+    ],
 )
 async def test_invalid_api_key_in_x_api_key_header_failure(
     invalid_api_key: str,
 ) -> None:
+    """Test failure response with invalid API key in X-API-KEY header."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL,
         default_headers={"X-API-KEY": invalid_api_key},
@@ -209,11 +215,12 @@ async def test_invalid_api_key_in_x_api_key_header_failure(
         "",
         None,
         "a" * 1000,
-    ]
+    ],
 )
 async def test_invalid_api_key_in_authorization_header_failure(
     token_type: str, invalid_api_key: str
 ) -> None:
+    """Test failure response with invalid API key in Authorization header."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL,
         default_headers={"Authorization": token_type + invalid_api_key},
@@ -253,9 +260,10 @@ async def test_invalid_api_key_in_authorization_header_failure(
         "",
         None,
         "a" * 1000,
-    ]
+    ],
 )
 async def test_invalid_api_key_in_query_param_failure(invalid_api_key: str) -> None:
+    """Test failure response with invalid API key in query parameter."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
 
     response = await api_client.get(
@@ -294,6 +302,7 @@ async def test_invalid_api_key_in_query_param_failure(invalid_api_key: str) -> N
 async def test_invalid_api_key_in_query_param_despite_valid_key_in_header_failure(
     header_name: str,
 ) -> None:
+    """Test failure response invalid API key in q param despite valid header key."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL, default_headers={header_name: settings.API_KEY}
     )
@@ -327,6 +336,7 @@ async def test_invalid_api_key_in_query_param_despite_valid_key_in_header_failur
 @pytest.mark.asyncio
 @pytest.mark.error
 async def test_missing_api_key_failure() -> None:
+    """Test failure response when API key is missing."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
 
     response = await api_client.get(
@@ -357,6 +367,7 @@ async def test_missing_api_key_failure() -> None:
 @pytest.mark.asyncio
 @pytest.mark.error
 async def test_rate_limited_api_key_failure() -> None:
+    """Test failure response when API key is rate-limited."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
 
     response = await api_client.get(
