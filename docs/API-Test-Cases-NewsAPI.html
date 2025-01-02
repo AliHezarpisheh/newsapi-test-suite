@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.3.7.2 (Linux)"/>
+	<meta name="created" content="2024-12-31T19:57:41"/>
+	<meta name="changed" content="2025-01-02T20:43:58.767127607"/>
+	<meta name="AppVersion" content="15.0000"/>
+
+	<style type="text/css">
+		body,div,table,thead,tbody,tfoot,tr,th,td,p { font-family:"Arial"; font-size:x-small }
+		a.comment-indicator:hover + comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em;  }
+		a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em;  }
+		comment { display:none;  }
+	</style>
+
+</head>
+
+<body>
+<table cellspacing="0" border="0">
+	<colgroup width="88"></colgroup>
+	<colgroup width="624"></colgroup>
+	<colgroup width="145"></colgroup>
+	<colgroup width="94"></colgroup>
+	<colgroup width="211"></colgroup>
+	<colgroup width="561"></colgroup>
+	<colgroup width="535"></colgroup>
+	<colgroup width="150"></colgroup>
+	<colgroup width="593"></colgroup>
+	<colgroup width="312"></colgroup>
+	<tr>
+		<td height="17" align="left" valign=bottom>Test Case ID</td>
+		<td align="left" valign=bottom>Test Scenario/Description</td>
+		<td align="left" valign=bottom>API Endpoint</td>
+		<td align="left" valign=bottom>HTTP Method</td>
+		<td align="left" valign=bottom>Preconditions</td>
+		<td align="left" valign=bottom>Query Parameters</td>
+		<td align="left" valign=bottom>Test Steps</td>
+		<td align="left" valign=bottom>Expected Status Code</td>
+		<td align="left" valign=bottom>Expected Response Data</td>
+		<td align="left" valign=bottom>Test Design Technique</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>AUTH_001</td>
+		<td align="left" valign=bottom>Verify successful API access using valid API key in X-API-KEY header. (Happy Path Test)</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin</td>
+		<td align="left" valign=bottom>1. Set valid API key in X-API-KEY header.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array</td>
+		<td align="left" valign=bottom>Smoke Testing</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>AUTH_002</td>
+		<td align="left" valign=bottom>Verify successful API access using valid API key in Authorization header.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin</td>
+		<td align="left" valign=bottom>1. Set valid API key in Authorization header (with and without &quot;Bearer&quot; prefix).<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>AUTH_003</td>
+		<td align="left" valign=bottom>Verify successful API access using valid API key in query parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin, apiKey={valid_key}</td>
+		<td align="left" valign=bottom>1. Send GET request with valid API key in query parameter.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>AUTH_004</td>
+		<td align="left" valign=bottom>Verify successful API access using valid API key in both header and query parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin, apiKey={valid_key}</td>
+		<td align="left" valign=bottom>1. Set valid API key in X-API-KEY or Authorization headers.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>AUTH_005</td>
+		<td align="left" valign=bottom>Verify successful API access using invalid API key in header and a valid API key in query parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin, apiKey={valid_key}</td>
+		<td align="left" valign=bottom>1. Set an invalid API key in X-API-KEY or Authorization headers.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="62" align="left" valign=bottom>AUTH_006</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid API key X-API-KEY header.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>-</td>
+		<td align="left" valign=bottom>q=bitcoin</td>
+		<td align="left" valign=bottom>1. Set an invalid API key in X-API-KEY header.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>401 Unauthorized</td>
+		<td align="left" valign=bottom>Expected Response Data:<br>- status: &quot;error&quot;<br>- code: &quot;apiKeyInvalid&quot;<br>- message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing, Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="62" align="left" valign=bottom>AUTH_007</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid API key Authorization header.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>-</td>
+		<td align="left" valign=bottom>q=bitcoin</td>
+		<td align="left" valign=bottom>1. Set an invalid API key in Authorization header.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>401 Unauthorized</td>
+		<td align="left" valign=bottom>Expected Response Data:<br>- status: &quot;error&quot;<br>- code: &quot;apiKeyInvalid&quot;<br>- message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing, Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="62" align="left" valign=bottom>AUTH_008</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid API key query parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>-</td>
+		<td align="left" valign=bottom>q=bitcoin, apiKey={valid_key}</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid API key in query parameter.</td>
+		<td align="left" valign=bottom>401 Unauthorized</td>
+		<td align="left" valign=bottom>Expected Response Data:<br>- status: &quot;error&quot;<br>- code: &quot;apiKeyInvalid&quot;<br>- message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing, Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="62" align="left" valign=bottom>AUTH_009</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid API key query parameter and valid API key in header.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin, apiKey={invalid_key}</td>
+		<td align="left" valign=bottom>1. Set a valid API key in X-API-KEY or Authorization headers.<br>2. Send GET request to /everything endpoint with query parameter.</td>
+		<td align="left" valign=bottom>401 Unauthorized</td>
+		<td align="left" valign=bottom>Expected Response Data:<br>- status: &quot;error&quot;<br>- code: &quot;apiKeyInvalid&quot;<br>- message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing, Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="62" align="left" valign=bottom>AUTH_010</td>
+		<td align="left" valign=bottom>Verify API behavior when rate limit is exceeded.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Rate Limited API Key is available.</td>
+		<td align="left" valign=bottom>q=bitcoin</td>
+		<td align="left" valign=bottom>1. Send request with rate-limited API key.</td>
+		<td align="left" valign=bottom>429 Too Many Requests</td>
+		<td align="left" valign=bottom>Expected Response Data:<br>- status: &quot;error&quot;<br>- code: &quot;rateLimited&quot;<br>- message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="77" align="left" valign=bottom>EVR_001</td>
+		<td align="left" valign=bottom>Verify successful basic request to /everything endpoint.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>q=tesla</td>
+		<td align="left" valign=bottom>1. Send GET request with basic search query.<br>2. Validate response status and format.<br>3. Check total results count.<br>4. Verify article count matches default page size.<br>5. Validate article and source field structure.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- totalResults: ≥ 0<br>- articles: array of 100 items (default page size)<br>- article fields: source, author, title, description, url, urlToImage, publishedAt, content<br>- source fields: id, name</td>
+		<td align="left" valign=bottom>Smoke Testing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_002</td>
+		<td align="left" valign=bottom>Verify response with custom page size parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q=ai<br>- page=1<br>- pageSize={random number between 1-100}</td>
+		<td align="left" valign=bottom>1. Send GET request with custom page size.<br>2. Verify response status.<br>3. Validate returned article count matches requested page size.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array matching requested page size</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_003</td>
+		<td align="left" valign=bottom>Verify pagination functionality and last page behavior.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q={variable}<br>- pageSize={random number between 1-100}<br>- page={variable}</td>
+		<td align="left" valign=bottom>1. Get first page and total results.<br>2. Calculate and request last valid page.<br>3. Request non-existing page (last_page + 1).</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- For valid pages: non-empty articles array<br>- For non-existing pages: empty articles array</td>
+		<td align="left" valign=bottom>Boundary Value Analysis, State Transition Testing</td>
+	</tr>
+	<tr>
+		<td height="106" align="left" valign=bottom>EVR_004</td>
+		<td align="left" valign=bottom>Verify different search query formats and operators.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>q: Multiple formats including:<br>  * Simple search (bitcoin)<br>  * Exact phrase (&quot;exact phrase&quot;)<br>  * Must include (+crypto)<br>  * Must exclude (-scam)<br>  * Complex operators (AND, OR, NOT)<br>  * Multi-word phrases</td>
+		<td align="left" valign=bottom>1. Send GET request with each search query format.<br>2. Verify successful response.<br>3. Manual verification required: Check if returned articles match search criteria.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array (The articles should mach the filtering criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_005</td>
+		<td align="left" valign=bottom>Verify different sort order options.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- sortBy: [relevancy, popularity, publishedAt]</td>
+		<td align="left" valign=bottom>1. Send GET request with each sort option.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles are properly sorted.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: non-empty array (The articles sorting should match the sorting criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_006</td>
+		<td align="left" valign=bottom>Verify articles filtering by language.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- language: [ar, de, en, es, fr, he, it, nl, no, pt, ru, sv, ud, zh]</td>
+		<td align="left" valign=bottom>1. Send GET request with each language code.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles are in specified language.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (may be empty for some languages) (The articles should be in specified language)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_007</td>
+		<td align="left" valign=bottom>Verify filtering by news sources.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {varibale}<br>- sources: [single source values, multiple sources values]</td>
+		<td align="left" valign=bottom>1. Send GET request with different source combinations.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles are from specified sources.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (Articles should be from the specified source(s)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_008</td>
+		<td align="left" valign=bottom>Verify filtering by domains and domain exclusion.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- domains/excludeDomains: [single domain values, multiple domains values]</td>
+		<td align="left" valign=bottom>1. Test inclusion and exclusion of domains.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles match domain filters.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (Articles should be in the specified domain criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_009</td>
+		<td align="left" valign=bottom>Verify filtering by publication date.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- from | to: [Date formats: YYYY-MM-DD, YYYY-MM-DDThh:mm:ss]</td>
+		<td align="left" valign=bottom>1. Send GET request with different date formats.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles are after specified date.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (Articles should match the date filtering criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_010</td>
+		<td align="left" valign=bottom>Verify filtering by date range (from and to parameters).</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- from: [YYYY-MM-DD, YYYY-MM-DDThh:mm:ss formats]<br>- to: [YYYY-MM-DD, YYYY-MM-DDThh:mm:ss formats]</td>
+		<td align="left" valign=bottom>1. Send GET request with different date range combinations.<br>2. Verify successful response.<br>3. Manual verification required: Check if articles fall within specified date range.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (Articles should match the date range filtering criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_011</td>
+		<td align="left" valign=bottom>Verify searching in specific article fields.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: silo{variable}<br>- searchIn: [Single fields: title, description, content]<br>           [Combined fields: title,content, title,description, etc.]</td>
+		<td align="left" valign=bottom>1. Send GET request with different searchIn combinations.<br>2. Verify successful response.<br>3. Manual verification required: Check if search term appears in specified fields.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- articles: array (Articles should match the searchIn filtering criteria)</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_012</td>
+		<td align="left" valign=bottom>Verify API behavior when required parameters are missing.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>None</td>
+		<td align="left" valign=bottom>1. Send GET request without any query parameters.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>- status: &quot;error&quot;<br>- code: &quot;parametersMissing&quot;<br>- message:  Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_013</td>
+		<td align="left" valign=bottom>Validate API behavior when page number is less than 1.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>page: [0, -1, -100] (example)</td>
+		<td align="left" valign=bottom>1. Send GET request with negative or zero page numbers.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;pageCannotBeLessThanOne&quot;<br>message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_014</td>
+		<td align="left" valign=bottom>Verify API behavior with non-numeric page values.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- page: [null, &quot;&quot;, &quot;not-digits&quot;] (example)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid page value types<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;pageCannotBeLessThanOne&quot;<br>Message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_015</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid pageSize numbers less than 1.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- page: 1<br>- pageSize: [-1, -100]</td>
+		<td align="left" valign=bottom>1. Send GET request with negative pageSize values.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>Code: A new related code, demonstrating the issue.<br>Message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_016</td>
+		<td align="left" valign=bottom>Verify API behavior with non-numeric pageSize values.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>q: {variable}<br>page: 1<br>pageSize: [null, &quot;&quot;, &quot;not-digits&quot;]</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid pageSize value types.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>Code: A new related code, demonstrating the issue.<br>Message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_017</td>
+		<td align="left" valign=bottom>Verify maximum results per page limitation.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- page: 1<br>- pageSize: [101, 200, 1000000]</td>
+		<td align="left" valign=bottom>1. Send GET request with pageSize exceeding limit.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>426 Upgrade Required</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;maximumResultsReached&quot;<br>message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_018</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid query filters in 'q' parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: [&quot;crypto AND OR&quot;, &quot;bitcoin AND&quot;, &quot;NOT OR&quot;, &quot;(crypto&quot;, &quot;crypto)&quot;] (examples)<br>  Generate invalid `q` values.</td>
+		<td align="left" valign=bottom>1. Send GET request with malformed query filters.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;queryMalformed&quot;<br>message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_019</td>
+		<td align="left" valign=bottom>Verify API behavior with null or empty 'q' parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: [&quot;&quot;, null, [], {}]<br>  Or other nullable and empty values.</td>
+		<td align="left" valign=bottom>1. Send GET request with nullable query values.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;parameterMissing&quot;<br>message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_020</td>
+		<td align="left" valign=bottom>Verify API behavior with query exceeding maximum length.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: 501 or more characters long string</td>
+		<td align="left" valign=bottom>1. Send GET request with oversized query.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;queryToLong&quot;<br>message: Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>EVR_021</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid sortBy parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- sortBy: [&quot;invalid&quot;, &quot;&quot;, null]</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid sort parameters.<br>2. Verify successful response and ensure the invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>EVR_022</td>
+		<td align="left" valign=bottom>Verify API behavior with nullable language parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- language: [&quot;&quot;, null, [], {}]</td>
+		<td align="left" valign=bottom>1. Send GET request with nullable language values.<br>2. Verify successful response and ensure the invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by nullable param values)</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>EVR_023</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid language parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- language: &quot;invalid&quot; (or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid language parameters.<br>2. Verify successful response and ensure the invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_024</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid excludeDomains parameter.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- excludeDomains: [&quot;not-a-domain&quot;, &quot;this-domain-does-not-exist.com&quot;, &quot;&quot;, null, &quot;bbc.co.uk,&quot;]<br>  (Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid exludeDomains parameters.<br>2. Verify successful response and ensure the invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_025</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid searchIn parameter values.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- searchIn: [&quot;invalid&quot;, &quot;title,invalid&quot;, &quot;invalid,invalid&quot;] (Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid searchIn values.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>400 Bad Request</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;parameterInvalid&quot;<br>message:  Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_026</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid 'from' date format.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- from: [&quot;invalid-date-format&quot;, &quot;2025-13-01&quot;, &quot;2025-02-30T10:00:00&quot;]<br>  (Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid from date formats.<br>2. Verify successful response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_027</td>
+		<td align="left" valign=bottom>Verify API behavior with invalid 'to' time values.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- to: [&quot;2025-02-01T25:00:00&quot;, &quot;2025-03-01T18:61:00&quot;, &quot;2025-04-01T15:30:61&quot;]<br>  (Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid from date formats.<br>2. Verify successful response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_028</td>
+		<td align="left" valign=bottom>Verify API behavior with 'from' date after 'to' date.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- from: &quot;2025-02-01T10:00:00&quot;<br>- to: &quot;2025-01-01T10:00:00&quot;</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid from date formats.<br>2. Verify successful response and ensure the invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>articles: array of articles (not affected by invalid param values)</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>EVR_029</td>
+		<td align="left" valign=bottom>Verify API behavior with 'from' date exceeding 5 years limit.</td>
+		<td align="left" valign=bottom>/everything</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- q: {variable}<br>- from: date more than 5 years ago</td>
+		<td align="left" valign=bottom>1. Send GET request with from date older than 5 years.<br>2. Verify error response.</td>
+		<td align="left" valign=bottom>426 Upgrade Required</td>
+		<td align="left" valign=bottom>status: &quot;error&quot;<br>code: &quot;parameterInvalid&quot;<br>message:  Related message, demonstrating the issue.</td>
+		<td align="left" valign=bottom>Boundary Value Analysis</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>SRC_001</td>
+		<td align="left" valign=bottom>Verify basic functionality of sources endpoint.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- </td>
+		<td align="left" valign=bottom>1. Send GET request to sources endpoint.<br>2. Verify response status code.<br>3. Validate sources data structure.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: array filled with news sources data</td>
+		<td align="left" valign=bottom>Smoke Testing</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>SRC_002</td>
+		<td align="left" valign=bottom>Verify sources filtering by valid category.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- category: All the valid values</td>
+		<td align="left" valign=bottom>1. Send GET request with category parameter.<br>2. Verify response status code.<br>3. Validate sources match selected category.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: array filtered by specified category</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>SRC_003</td>
+		<td align="left" valign=bottom>Verify sources filtering by valid language.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- language: All the valid values</td>
+		<td align="left" valign=bottom>1. Send GET request with language parameter.<br>2. Verify response status code.<br>3. Validate sources match selected language.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: array filtered by specified language</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="47" align="left" valign=bottom>SRC_004</td>
+		<td align="left" valign=bottom>Verify sources filtering by valid country.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- country: All the valid values</td>
+		<td align="left" valign=bottom>1. Send GET request with country parameter.<br>2. Verify response status code.<br>3. Validate sources match selected language.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: array filtered by specified country</td>
+		<td align="left" valign=bottom>Equivalence Partitioning</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>SRC_005</td>
+		<td align="left" valign=bottom>Verify response with invalid category parameter.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- category: [&quot;invalid_category&quot;, &quot;BUSINESS&quot;, &quot;123&quot;, &quot;!@#$%&quot;, &quot;&quot;, null]<br>(Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid category.<br>2. Verify successful response and make sure invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: emptry array</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>SRC_006</td>
+		<td align="left" valign=bottom>Verify response with invalid language parameter.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- language: [&quot;invalid&quot;, &quot;EN&quot;, &quot;123&quot;, &quot;!@#$%&quot;, &quot;&quot;, null]<br>(Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid language.<br>2. Verify successful response and make sure invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: “ok” <br>sources: emptry array</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="32" align="left" valign=bottom>SRC_007</td>
+		<td align="left" valign=bottom>Verify response with invalid country parameter.</td>
+		<td align="left" valign=bottom>/top-headlines/sources</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- country: [&quot;invalid_country&quot;, &quot;US&quot;, &quot;123&quot;, &quot;!@#$%&quot;, &quot;&quot;, null]<br>(Or other invalid values)</td>
+		<td align="left" valign=bottom>1. Send GET request with invalid country.<br>2. Verify successful response and make sure invalid params haven’t affected response.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>status: &quot;ok&quot;<br>sources: emptry array</td>
+		<td align="left" valign=bottom>Error Guessing</td>
+	</tr>
+	<tr>
+		<td height="77" align="left" valign=bottom>THDL_001</td>
+		<td align="left" valign=bottom>Verify successful basic request to /top-headlines endpoint.</td>
+		<td align="left" valign=bottom>/top-headlines</td>
+		<td align="left" valign=bottom>GET</td>
+		<td align="left" valign=bottom>Valid API key available.</td>
+		<td align="left" valign=bottom>- country: us (Or any valid other country)</td>
+		<td align="left" valign=bottom>1. Send GET request with basic search query.<br>2. Validate response status and format.<br>3. Check total results count.<br>4. Verify article count matches default page size.<br>5. Validate article and source field structure.</td>
+		<td align="left" valign=bottom>200 OK</td>
+		<td align="left" valign=bottom>- status: &quot;ok&quot;<br>- totalResults: ≥ 0<br>- articles: array of 100 items (default page size)<br>- article fields: source, author, title, description, url, urlToImage, publishedAt, content<br>- source fields: id, name</td>
+		<td align="left" valign=bottom>Smoke Testing</td>
+	</tr>
+</table>
+<!-- ************************************************************************** -->
+</body>
+
+</html>
