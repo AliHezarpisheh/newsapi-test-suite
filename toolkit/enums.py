@@ -18,6 +18,8 @@ class ResponseCodeEnum(str, Enum):
     PARAMETER_INVALID = "parameterInvalid"
     PARAMETER_MISSING = "parametersMissing"
     SOURCES_DOES_NOT_EXIST = "sourceDoesNotExist"
+    PAGE_CAN_NOT_BE_LESS_THAN_ONE = "pageCannotBeLessThanOne"
+    Maximum_RESULTS_REACHED = "maximumResultsReached"
     RATE_LIMITED = "rateLimited"
 
 
