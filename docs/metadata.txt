@@ -2,7 +2,7 @@ I will record my observations about the web service here. This is not a professi
 and personal thoughts gathered during the testing process.
 
 
-Missed in the documents:
+Everything:
 - (This is not a defect, ask the team.) What should happen if the API key has been sent in 2 ways (query param and HTTP header), and one of them is valid
   while the other one is invalid? Currently, the apiKey query param has precedence over the headers. Is this the expected behavior? I have assumed this is the
   expected behavior and wrote my tests based on this assumption. Probably, in a real project, I wouldn't make these types of assumptions.
@@ -40,4 +40,7 @@ Missed in the documents:
 - (This is not a defect, but document it.) There are general inconsistencies in API responses when an invalid parameter is passed. For example, the API raises an error when the searchIn parameter is passed to it,
   but doesn't raise an error when exclude_domains receives an invalid parameter.
 
-- ((This is a CRITICAL defect, document it.) Some values for to params that are earlier than from result in a non-empty successful list of articles. Example: (to=2025-01-01T10:00:00, from=2025-02-01T10:00:00)
+- (This is a CRITICAL defect, document it.) Some values for to params that are earlier than from result in a non-empty successful list of articles. Example: (to=2025-01-01T10:00:00, from=2025-02-01T10:00:00)
+
+Sources:
+- (Maybe not a defect, but report it anyway) Inconsistent behavior when providing invalid arguments (for country, language, and category parameters). Some of them do not affect the response, while others result in an empty list.
