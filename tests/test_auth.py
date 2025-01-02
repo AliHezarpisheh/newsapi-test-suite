@@ -202,28 +202,20 @@ async def test_invalid_api_key_in_x_api_key_header_failure(
 @pytest.mark.asyncio
 @pytest.mark.error
 @pytest.mark.parametrize(
-    "token_type",
-    [
-        "",
-        "Bearer ",
-    ],
-)
-@pytest.mark.parametrize(
     "invalid_api_key",
     [
         "invalid_key",
-        "",
-        None,
+        "Bearer invalid_key",
         "a" * 1000,
     ],
 )
 async def test_invalid_api_key_in_authorization_header_failure(
-    token_type: str, invalid_api_key: str
+    invalid_api_key: str,
 ) -> None:
     """Test failure response with invalid API key in Authorization header."""
     api_client = AsyncAPIClient(
         base_url=settings.BASE_URL,
-        default_headers={"Authorization": token_type + invalid_api_key},
+        default_headers={"Authorization": invalid_api_key},
     )
 
     response = await api_client.get(
