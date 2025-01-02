@@ -29,5 +29,5 @@ class APIEndpointEnum(str, Enum):
     """Enumeration of the API endpoints."""
 
     EVERYTHING = "/everything"
-    TOP_HEADLINES = "/top_headlines"
+    TOP_HEADLINES = "/top-headlines"
     SOURCES = "/sources"
