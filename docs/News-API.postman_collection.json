@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "239eb2fb-34f6-4dcd-a187-8929f2f4ad75",
+		"name": "News API",
+		"description": "## 📰 Search worldwide news with NewsApi\n\n### Locate articles and breaking news headlines from news sources and blogs across the web with our JSON API\n\nThe main use of News API is to search through every article published by over 150,000 news sources and blogs in the last 5 years. Think of us as Google News that you can interact with programmatically!",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29980172"
+	},
+	"item": [
+		{
+			"name": "Get Everything",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/everything?q=pixies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"everything"
+					],
+					"query": [
+						{
+							"key": "searchIn",
+							"value": "title,content",
+							"disabled": true
+						},
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "sortBy",
+							"value": "publishedAt",
+							"disabled": true
+						},
+						{
+							"key": "language",
+							"value": "en",
+							"disabled": true
+						},
+						{
+							"key": "from",
+							"value": "2025-01-02",
+							"disabled": true
+						},
+						{
+							"key": "to",
+							"value": "2025-01-02",
+							"disabled": true
+						},
+						{
+							"key": "domains",
+							"value": "bbc.co.uk, techcrunch.com",
+							"disabled": true
+						},
+						{
+							"key": "excludeDomains",
+							"value": "engadget.com",
+							"disabled": true
+						},
+						{
+							"key": "sources",
+							"value": "abc-news",
+							"disabled": true
+						},
+						{
+							"key": "q",
+							"value": "pixies"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Top Headlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/top-headlines?q=ml",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"top-headlines"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "pageSize",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "q",
+							"value": "ml"
+						},
+						{
+							"key": "sources",
+							"value": "abc-news",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "business",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "us",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/top-headlines/sources",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"top-headlines",
+						"sources"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "{{apiKey}}",
+							"disabled": true
+						},
+						{
+							"key": "language",
+							"value": "en",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "business",
+							"disabled": true
+						},
+						{
+							"key": "country",
+							"value": "us",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{apiKey}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "X-Api-Key",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiKey",
+			"value": "***"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://newsapi.org/v2",
+			"type": "default"
+		}
+	]
+}
