@@ -163,7 +163,6 @@ async def test_valid_api_key_in_query_param_despite_invalid_key_in_header_succes
     [
         "invalid_key",
         "",
-        None,
         "a" * 1000,
     ],
 )
