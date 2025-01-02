@@ -11,8 +11,8 @@ The **NewsAPI Test Suite** is an automation testing project designed to validate
 ## Installation
 1. **Clone the Repository:**
    ```bash
-   git clone <repository_url>
-   cd <repository_name>
+   git clone https://github.com/AliHezarpisheh/newsapi-test-suite.git
+   cd https://github.com/AliHezarpisheh/newsapi-test-suite.git
    ```
 
 2. **Install Dependencies:**
