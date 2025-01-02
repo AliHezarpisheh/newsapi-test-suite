@@ -43,6 +43,7 @@ async def test_valid_api_key_in_x_api_key_header_success(
         "Bearer ",
     ],
 )
+@pytest.mark.smoke
 async def test_valid_api_key_in_authorization_header_success(token_type: str) -> None:
     """Test successful response with valid API key in Authorization header."""
     api_client = AsyncAPIClient(
@@ -68,6 +69,7 @@ async def test_valid_api_key_in_authorization_header_success(token_type: str) ->
 
 
 @pytest.mark.asyncio
+@pytest.mark.smoke
 async def test_valid_api_key_in_query_param_success() -> None:
     """Test successful response with valid API key in query parameter."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
@@ -327,6 +329,7 @@ async def test_invalid_api_key_in_query_param_despite_valid_key_in_header_failur
 
 @pytest.mark.asyncio
 @pytest.mark.error
+@pytest.mark.smoke
 async def test_missing_api_key_failure() -> None:
     """Test failure response when API key is missing."""
     api_client = AsyncAPIClient(base_url=settings.BASE_URL)
