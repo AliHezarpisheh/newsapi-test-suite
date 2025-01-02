@@ -27,3 +27,17 @@ Missed in the documents:
   informative response. (-1 was the value)
 
 - (This is not a defect, a documentation problem.) The sources index is not actually showing the sources index.
+
+- (This is a defect, document it.) The query malformed error code could be more descriptive than unexpectedError. I suggest the queryMalformed code. Also, words ending with )
+  are not handled properly (e.g., crypto)).
+
+- (This is a CRITICAL defect, document it.) Sending an empty JSON/HashMap/Dictionary as a value in the q param will result in a huge number of articles being returned (1,860,197 when writing this document).
+  This should not be the behavior, as it seems that this case is not handled properly in the back-end. This case should raise the missingParameter error code, like the rest of the times when a nullable value
+  is passed to the API. Make sure to check other nullable values.
+
+- (This is a defect, document it.) Setting a non-existent value for exclude_domains (but a valid domain format) most of the time results in a timeout error. Check the performance considerations for this test case.
+
+- (This is not a defect, but document it.) There are general inconsistencies in API responses when an invalid parameter is passed. For example, the API raises an error when the searchIn parameter is passed to it,
+  but doesn't raise an error when exclude_domains receives an invalid parameter.
+
+- ((This is a CRITICAL defect, document it.) Some values for to params that are earlier than from result in a non-empty successful list of articles. Example: (to=2025-01-01T10:00:00, from=2025-02-01T10:00:00)
