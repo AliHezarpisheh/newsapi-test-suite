@@ -19,7 +19,9 @@ class ResponseCodeEnum(str, Enum):
     PARAMETER_MISSING = "parametersMissing"
     SOURCES_DOES_NOT_EXIST = "sourceDoesNotExist"
     PAGE_CAN_NOT_BE_LESS_THAN_ONE = "pageCannotBeLessThanOne"
-    Maximum_RESULTS_REACHED = "maximumResultsReached"
+    MAXIMUM_RESULTS_REACHED = "maximumResultsReached"
+    QUERY_MALFORMED = "queryMalformed"
+    QUERY_TOO_LONG = "queryTooLong"
     RATE_LIMITED = "rateLimited"
 
 
