@@ -21,6 +21,6 @@ def api_client() -> AsyncAPIClient:
         The API client instance for use in tests.
     """
     return AsyncAPIClient(
-        base_url="https://newsapi.org/v2",
+        base_url=settings.BASE_URL,
         default_headers={"X-API-KEY": settings.API_KEY},
     )
